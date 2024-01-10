@@ -11,6 +11,7 @@
 3. we need to seperately add/delete the DBP,DAP,TMF,WC to their respected DB
 4. after we will create config record by the above values
 5. and to calculate the final bill, using the config record
+6. TIMES ARE IN MINUTES
 
 # Guide
 
