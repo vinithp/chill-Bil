@@ -22,8 +22,8 @@ export async function POST(req: NextRequest){
         if(!config){
         return NextResponse.json({ message:'no active config'},{status: 400})
         }
-
         const dbp = {range: config.dbp[day].dbpId.range, price: config.dbp[day].dbpId.price}
+
         const dap ={
             range:0,
             price:0,
@@ -76,11 +76,10 @@ export async function POST(req: NextRequest){
             }
         }
 
-        const dbpValue = (range/dbp.range)*dbp.price
-        const dapValue = ((range)*dap.price)
-        const tmfValue = ((tmf.duration/60)*tmf.price)
-        const wcValue = ((waitingTime/wc.duration)*wc.price)
-        console.log(dbpValue, dapValue, tmfValue, wcValue)
+        const dbpValue = (range/dbp.range)*dbp.price || 0
+        const dapValue = ((range)*dap.price) || 0
+        const tmfValue = ((tmf.duration/60)*tmf.price) || 0
+        const wcValue = ((waitingTime/wc.duration)*wc.price) || 0
         return NextResponse.json((dbpValue+dapValue+tmfValue+wcValue),{status: 200})
 
     } catch (error: any) {
